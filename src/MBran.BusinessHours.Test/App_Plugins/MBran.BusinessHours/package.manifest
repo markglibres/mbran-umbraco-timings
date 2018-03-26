@@ -1,0 +1,11 @@
+﻿{
+  propertyEditors: [
+    {
+      alias: 'MBran.BusinessHours',
+      name: 'Business Opening Hours',
+      editor: { view: '~/App_Plugins/MBran.BusinessHours/views/businesshours.html' }
+    }
+  ],
+  javascript:	['~/App_Plugins/MBran.BusinessHours/js/businesshours.controller.js'],
+  css:			['~/App_Plugins/MBran.BusinessHours/css/businesshours.css']
+}
