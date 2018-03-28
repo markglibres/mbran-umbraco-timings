@@ -1,0 +1,11 @@
+﻿{
+  propertyEditors: [
+    {
+      alias: 'MBran.Timings',
+      name: 'Timings - Opening Hours',
+      editor: { view: '~/App_Plugins/MBran.Timings/views/timings.html' }
+    }
+  ],
+  javascript:	['~/App_Plugins/MBran.Timings/js/timings.controller.js'],
+  css:			['~/App_Plugins/MBran.Timings/css/timings.css']
+}

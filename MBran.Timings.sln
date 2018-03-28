@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBran.Timings", "src\MBran.Timings\MBran.Timings.csproj", "{FCB2FCC2-7D48-48FC-8592-187F3CCD7905}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBran.Timings.Test", "src\MBran.Timings.Test\MBran.Timings.Test.csproj", "{C4AF8925-E364-4349-A370-80EAA45CBE06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCB2FCC2-7D48-48FC-8592-187F3CCD7905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB2FCC2-7D48-48FC-8592-187F3CCD7905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB2FCC2-7D48-48FC-8592-187F3CCD7905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB2FCC2-7D48-48FC-8592-187F3CCD7905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4AF8925-E364-4349-A370-80EAA45CBE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4AF8925-E364-4349-A370-80EAA45CBE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4AF8925-E364-4349-A370-80EAA45CBE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4AF8925-E364-4349-A370-80EAA45CBE06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A90657D-1AD9-46D6-85AC-FBDFDB17B28A}
+	EndGlobalSection
+EndGlobal
