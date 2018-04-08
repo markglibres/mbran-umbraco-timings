@@ -1,6 +1,6 @@
 ﻿angular.module('umbraco')
     .controller('MBran.Timings.TimingsController', function ($scope) {
-
+        console.log($scope.model.value);
         function init() {
             initOptions();
             initDefaults();
@@ -11,44 +11,71 @@
 
 
         function initOptions() {
-            $scope.model.hideLabel = true;
+            //$scope.model.hideLabel = true;
 
         }
 
         function initModel() {
-            $scope.model.timings = [];
             
-
-            $scope.model.timings.push({
-                day: {
-                    from: 1, to: 6
-                },
-                time: {
-                    from: {
-                        hour: 9,
-                        minute: 0,
-                        meridian: 'AM'
-                    }
-                }
-            });
-
-            $scope.model.timings.push({
-                day: {
-                    from: 1, to: 6
-                },
-                time: {
-                    from: {
-                        hour: 5,
-                        minute: 0,
-                        meridian: 'PM'
-                    }
-                }
-            });
+            if (!$scope.model.value || !$scope.model.value.timings) {
+                $scope.model.value = { timings: [] };
+            }
+            
+            $scope.timings = [];
+            angular.copy($scope.model.value.timings, $scope.timings);
         }
+
+        $scope.applyTimingChanges = function (timing, index) {
+            if (!$scope.model.value.timings[index]) {
+                var newTimings = {};
+                angular.copy(timing, newTimings);
+                $scope.model.value.timings.push(newTimings);
+            } else {
+                $scope.model.value.timings[index] = timing;
+            }
+            
+            return false;
+        };
+
+        $scope.addNewTimings = function () {
+            $scope.timings.push({
+                'day': {
+                    'from': 1,
+                    'to': 5
+                },
+                'from': {
+                    'hour': '9',
+                    'minutes': '00',
+                    'meridian': 'AM'
+                },
+                'to': {
+                    'hour': '6',
+                    'minutes': '00',
+                    'meridian': 'PM'
+                }
+            });
+        };
 
         function initDefaults() {
-            $scope.days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            $scope.options = {};
+            $scope.options.days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+
+            var minutesInterval = 15;
+            var hoursInterval = 1;
+            $scope.options.times = {
+                hours: [],
+                minutes: [],
+                meridians: ['AM','PM']
+            };
+
+            for (var hour = 1; hour <= 12; hour+=hoursInterval) {
+                $scope.options.times.hours.push(hour+'');
+            }
+
+            for (var minute = 0; minute < 60; minute += minutesInterval) {
+                $scope.options.times.minutes.push((minute < 10 ? '0' : '') + minute);
+            }
         }
 
-        console.log('test');
+        console.log($scope.model);
     });

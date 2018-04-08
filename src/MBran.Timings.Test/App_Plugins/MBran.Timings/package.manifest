@@ -3,7 +3,10 @@
     {
       alias: 'MBran.Timings',
       name: 'Timings - Opening Hours',
-      editor: { view: '~/App_Plugins/MBran.Timings/views/timings.html' }
+      editor: { 
+		view: '~/App_Plugins/MBran.Timings/views/timings.html',
+		valueType: 'JSON'
+	  }
     }
   ],
   javascript:	['~/App_Plugins/MBran.Timings/js/timings.controller.js'],

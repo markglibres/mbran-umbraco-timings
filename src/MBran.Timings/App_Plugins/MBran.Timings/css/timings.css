@@ -1,3 +1,20 @@
-﻿body
-{
+﻿.timing-day select {
+    width: 80px;
+}
+
+.timing-time select {
+    width: 60px;
+}
+
+.timing-day, .timing-time {
+    display: inline-block;
+}
+
+.timing label {
+    line-height: 15px;
+    padding: 10px;
+}
+
+.timing-time {
+    margin-left: 50px;
 }
