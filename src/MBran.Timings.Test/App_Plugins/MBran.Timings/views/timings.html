@@ -1,38 +1,50 @@
 ﻿<div class="umb-property mbran-timings" ng-controller="MBran.Timings.TimingsController">
     <div class="control-group umb-control-group">
-        <div class="timing" ng-repeat="timing in timings track by $index">
-            <div class="timing-day">
-                <select ng-model="timing.day.from">
-                    <option ng-repeat="day in options.days track by $index" value="{{$index}}" ng-selected="timing.day.from == $index">{{day}}</option>
-                </select>
-                <label>To</label>
-                <select ng-model="timing.day.to">
-                    <option ng-repeat="day in options.days track by $index" value="{{$index}}" ng-selected="timing.day.to == $index">{{day}}</option>
-                </select>
+        <div class="timing" ng-repeat="timing in model.timings track by $index">
+            <div class="timing-edit" ng-show="isEditMode($index)">
+                <div class="timing-day">
+                    <select ng-model="timing.day.from">
+                        <option ng-repeat="day in options.days track by $index" value="{{$index}}" ng-selected="timing.day.from == $index">{{day}}</option>
+                    </select>
+                    <label>To</label>
+                    <select ng-model="timing.day.to">
+                        <option ng-repeat="day in options.days track by $index" value="{{$index}}" ng-selected="timing.day.to == $index">{{day}}</option>
+                    </select>
+                </div>
+                <div class="timing-time">
+                    <select ng-model="timing.from.hour">
+                        <option ng-repeat="hourFrom in options.times.hours track by $index" value="{{hourFrom}}" ng-selected="timing.from.hour == hourFrom">{{hourFrom}}</option>
+                    </select>
+                    <select ng-model="timing.from.minutes">
+                        <option ng-repeat="minuteFrom in options.times.minutes track by $index" value="{{minuteFrom}}" ng-selected="timing.from.minutes == minuteFrom">{{minuteFrom}}</option>
+                    </select>
+                    <select ng-model="timing.from.meridian">
+                        <option ng-repeat="meridianFrom in options.times.meridians track by $index" value="{{meridianFrom}}" ng-selected="timing.from.meridian == meridianFrom">{{meridianFrom}}</option>
+                    </select>
+                    <label>To</label>
+                    <select ng-model="timing.to.hour">
+                        <option ng-repeat="hourTo in options.times.hours track by $index" value="{{hourTo}}" ng-selected="timing.to.hour == hourTo">{{hourTo}}</option>
+                    </select>
+                    <select ng-model="timing.to.minutes">
+                        <option ng-repeat="minuteTo in options.times.minutes track by $index" value="{{minuteTo}}" ng-selected="timing.to.minutes == minuteTo">{{minuteTo}}</option>
+                    </select>
+                    <select ng-model="timing.to.meridian">
+                        <option ng-repeat="meridianTo in options.times.meridians track by $index" value="{{meridianTo}}" ng-selected="timing.to.meridian == meridianTo">{{meridianTo}}</option>
+                    </select>
+                </div>
+                <div class="timing-icons umb-node-preview__actions">
+                    <a class="umb-node-preview__action ng-scope" href ng-click="applyChanges(timing, $index); $event.stopPropagation();">Apply</a>
+                    <a class="umb-node-preview__action ng-scope" href ng-click="cancelChanges(timing, $index); $event.stopPropagation();">Cancel</a>
+                </div>
             </div>
-            <div class="timing-time">
-                <select ng-model="timing.from.hour">
-                    <option ng-repeat="hourFrom in options.times.hours track by $index" value="{{hourFrom}}" ng-selected="timing.from.hour == hourFrom">{{hourFrom}}</option>
-                </select>
-                <select ng-model="timing.from.minutes">
-                    <option ng-repeat="minuteFrom in options.times.minutes track by $index" value="{{minuteFrom}}" ng-selected="timing.from.minutes == minuteFrom">{{minuteFrom}}</option>
-                </select>
-                <select ng-model="timing.from.meridian">
-                    <option ng-repeat="meridianFrom in options.times.meridians track by $index" value="{{meridianFrom}}" ng-selected="timing.from.meridian == meridianFrom">{{meridianFrom}}</option>
-                </select>
-                <label>To</label>
-                <select ng-model="timing.to.hour">
-                    <option ng-repeat="hourTo in options.times.hours track by $index" value="{{hourTo}}" ng-selected="timing.to.hour == hourTo">{{hourTo}}</option>
-                </select>
-                <select ng-model="timing.to.minutes">
-                    <option ng-repeat="minuteTo in options.times.minutes track by $index" value="{{minuteTo}}" ng-selected="timing.to.minutes == minuteTo">{{minuteTo}}</option>
-                </select>
-                <select ng-model="timing.to.meridian">
-                    <option ng-repeat="meridianTo in options.times.meridians track by $index" value="{{meridianTo}}" ng-selected="timing.to.meridian == meridianTo">{{meridianTo}}</option>
-                </select>
-            </div>
-            <div>
-                <button ng-click="applyTimingChanges(timing, $index)">Apply</button>
+            <div class="timing-display" ng-show="!isEditMode($index)">
+                <div class="timing-heading umb-node-preview__content">
+                    {{options.days[timing.day.from]}} to {{options.days[timing.day.to]}} {{timing.from.hour}}:{{timing.from.minutes}} {{timing.from.meridian}} to {{timing.to.hour}}:{{timing.to.minutes}} {{timing.to.meridian}}
+                </div>
+                <div class="timing-icons umb-node-preview__actions">
+                    <a class="umb-node-preview__action ng-scope" href ng-click="setEditMode($index)">Edit</a>
+                    <a class="umb-node-preview__action ng-scope" href ng-click="removeTiming($index)">Remove</a>
+                </div>
             </div>
         </div>
     </div>
