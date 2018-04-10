@@ -1,9 +1,8 @@
 ﻿angular.module('umbraco')
     .controller('MBran.Timings.TimingsController', function ($scope) {
 
-        console.log($scope.model);
         var editMode = [];
-        $scope.model.timings = [];
+        $scope.timings = [];
 
         function init() {
             initOptions();
@@ -16,13 +15,12 @@
 
             var originalItem = {
                 key: index,
-                timing: copyTiming($scope.model.timings[index])
+                timing: angular.copy($scope.timings[index])
             };
 
             if (editIndex === -1) {
                 editMode.push(originalItem);
             } else {
-                editMode[editIndex] = null;
                 editMode[editIndex] = originalItem;
             }
         };
@@ -37,52 +35,54 @@
         };
 
         $scope.applyChanges = function (timing, index) {
-            var newTimings = copyTiming(timing);
+            
+            var newTimings = angular.copy(timing);
 
             if (!$scope.model.value.timings[index]) {
                 $scope.model.value.timings.push(newTimings);
             } else {
-                $scope.model.value.timings[index] = null;
                 $scope.model.value.timings[index] = newTimings;
             }
 
             $scope.removeEditMode(index);
+
             return false;
         };
 
         $scope.cancelChanges = function (timing, index) {
             
             var editIndex = getEditModeIndex(index);
-            var originalTiming = copyTiming(editMode[editIndex].timing);
+            var originalTiming = angular.copy(editMode[editIndex].timing);
 
-            $scope.model.timings[index] = null;
-            $scope.model.timings[index] = originalTiming;
+            if (!$scope.model.value.timings[index]) {
+                $scope.removeTiming(index);
+            } else {
+                $scope.timings[index] = originalTiming;    
+            }
+            
             $scope.removeEditMode(index);
         };
 
         $scope.removeTiming = function(index) {
-            $scope.model.timings.splice(index, 1);
+
+            if ($scope.timings[index]) {
+                $scope.timings.splice(index, 1);
+            }
+
+            if ($scope.model.value.timings[index]) {
+                $scope.model.value.timings.splice(index, 1);
+            }
         };
 
         $scope.addNewTimings = function () {
-            $scope.model.timings.push({
-                day: {
-                    from: '1',
-                    to: '5'
-                },
-                from: {
-                    hour: '9',
-                    minutes: '00',
-                    meridian: 'AM'
-                },
-                to: {
-                    hour: '6',
-                    minutes: '00',
-                    meridian: 'PM'
-                }
+
+            $scope.timings.push({
+                day: { from: '1', to: '5' },
+                from: { hour: '9', minutes: '00', meridian: 'AM' },
+                to: { hour: '6', minutes: '00', meridian: 'PM' }
             });
 
-            $scope.setEditMode($scope.model.timings.length - 1);
+            $scope.setEditMode($scope.timings.length - 1);
         };
 
         /**
@@ -97,38 +97,25 @@
             return -1;
         }
 
-        function copyTiming(timing) {
-            return {
-                day: {
-                    from: timing.day.from,
-                    to: timing.day.to
-                },
-                from: {
-                    hour: timing.from.hour,
-                    minutes: timing.from.minutes,
-                    meridian: timing.from.meridian
-                },
-                to: {
-                    hour: timing.to.hour,
-                    minutes: timing.to.minutes,
-                    meridian: timing.to.meridian
-                }
-            };
-        }
-
+        
         function initOptions() {
 
         }
 
         function initModel() {
-            
-            if (!$scope.model.value || !$scope.model.value.timings) {
-                $scope.model.value = { timings: [] };
+
+            if ($scope.model.value == null || $scope.model.value == '') {
+                $scope.model.value = [];
             }
 
+            if ($scope.model.value.timings == null) {
+                $scope.model.value.timings = [];
+            }
+
+            
             for (var i = 0; i < $scope.model.value.timings.length; i++)
             {
-                $scope.model.timings.push(copyTiming($scope.model.value.timings[i]));
+                $scope.timings.push(angular.copy($scope.model.value.timings[i]));
             }
         }
 
@@ -145,7 +132,7 @@
             };
 
             for (var hour = 1; hour <= 12; hour+=hoursInterval) {
-                $scope.options.times.hours.push(hour+'');
+                $scope.options.times.hours.push(hour);
             }
 
             for (var minute = 0; minute < 60; minute += minutesInterval) {

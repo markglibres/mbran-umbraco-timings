@@ -1,6 +1,6 @@
 ﻿<div class="umb-property mbran-timings" ng-controller="MBran.Timings.TimingsController">
     <div class="control-group umb-control-group">
-        <div class="timing" ng-repeat="timing in model.timings track by $index">
+        <div class="timing" ng-repeat="timing in timings track by $index">
             <div class="timing-edit" ng-show="isEditMode($index)">
                 <div class="timing-day">
                     <select ng-model="timing.day.from">
@@ -33,8 +33,8 @@
                     </select>
                 </div>
                 <div class="timing-icons umb-node-preview__actions">
-                    <a class="umb-node-preview__action ng-scope" href ng-click="applyChanges(timing, $index); $event.stopPropagation();">Apply</a>
-                    <a class="umb-node-preview__action ng-scope" href ng-click="cancelChanges(timing, $index); $event.stopPropagation();">Cancel</a>
+                    <a class="umb-node-preview__action ng-scope" href ng-click="applyChanges(timing, $index)">Apply</a>
+                    <a class="umb-node-preview__action ng-scope" href ng-click="cancelChanges(timing, $index)">Cancel</a>
                 </div>
             </div>
             <div class="timing-display" ng-show="!isEditMode($index)">
@@ -49,7 +49,6 @@
         </div>
     </div>
     <div>
-        <button ng-click="model.value = []">Clear Model</button>
         <button ng-click="addNewTimings()">Add timing</button>
     </div>
 </div>
