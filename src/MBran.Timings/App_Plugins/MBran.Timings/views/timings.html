@@ -4,12 +4,14 @@
             <div class="timing-edit" ng-show="isEditMode($index)">
                 <div class="timing-day">
                     <select ng-model="timing.day.from">
-                        <option ng-repeat="day in options.days track by $index" value="{{$index}}" ng-selected="timing.day.from == $index">{{day}}</option>
+                        <option ng-repeat="day in options.days.code track by $index" value="{{$index}}" ng-selected="timing.day.from == $index">{{day}}</option>
                     </select>
-                    <label>To</label>
-                    <select ng-model="timing.day.to">
-                        <option ng-repeat="day in options.days track by $index" value="{{$index}}" ng-selected="timing.day.to == $index">{{day}}</option>
+                    <label ng-show="!sameDay[$index]">To</label>
+                    <select ng-model="timing.day.to" ng-show="!sameDay[$index]" ng-change="changeSameDay($index)">
+                        <option ng-repeat="day in options.days.code track by $index" value="{{$index}}" ng-selected="timing.day.to == $index">{{day}}</option>
                     </select>
+                    <input type="checkbox" ng-model="sameDay[$index]" ng-show="sameDay[$index]"/>
+                    <label ng-show="sameDay[$index]">Same day</label>
                 </div>
                 <div class="timing-time">
                     <select ng-model="timing.from.hour">
@@ -39,7 +41,7 @@
             </div>
             <div class="timing-display" ng-show="!isEditMode($index)">
                 <div class="timing-heading umb-node-preview__content">
-                    {{options.days[timing.day.from]}} to {{options.days[timing.day.to]}} {{timing.from.hour}}:{{timing.from.minutes}} {{timing.from.meridian}} to {{timing.to.hour}}:{{timing.to.minutes}} {{timing.to.meridian}}
+                    {{options.days.name[timing.day.from]}} to {{options.days.name[timing.day.to]}} {{timing.from.hour}}:{{timing.from.minutes}} {{timing.from.meridian}} to {{timing.to.hour}}:{{timing.to.minutes}} {{timing.to.meridian}}
                 </div>
                 <div class="timing-icons umb-node-preview__actions">
                     <a class="umb-node-preview__action ng-scope" href ng-click="setEditMode($index)">Edit</a>
@@ -49,6 +51,6 @@
         </div>
     </div>
     <div>
-        <button ng-click="addNewTimings()">Add timing</button>
+        <button ng-click="addNewTimings(); $event.preventDefault();">Add timing</button>
     </div>
 </div>

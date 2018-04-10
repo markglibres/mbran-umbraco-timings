@@ -3,6 +3,7 @@
 
         var editMode = [];
         $scope.timings = [];
+        $scope.sameDay = [];
 
         function init() {
             initOptions();
@@ -43,6 +44,8 @@
             } else {
                 $scope.model.value.timings[index] = newTimings;
             }
+
+            $scope.sameDay[index] = newTimings.day.from == newTimings.day.to;
 
             $scope.removeEditMode(index);
 
@@ -85,6 +88,11 @@
             $scope.setEditMode($scope.timings.length - 1);
         };
 
+        $scope.changeSameDay = function (index) {
+            var timing = $scope.timings[index];
+            $scope.sameDay[index] = timing.day.from == timing.day.to;
+        }
+
         /**
          * PRIVATE METHODS
          */
@@ -115,13 +123,18 @@
             
             for (var i = 0; i < $scope.model.value.timings.length; i++)
             {
-                $scope.timings.push(angular.copy($scope.model.value.timings[i]));
+                var timing = $scope.model.value.timings[i];
+                $scope.timings.push(angular.copy(timing));
+                $scope.sameDay.push(timing.day.from == timing.day.to);
             }
         }
 
         function initDefaults() {
             $scope.options = {};
-            $scope.options.days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+            $scope.options.days = {
+                code: ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'],
+                name: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            };
 
             var minutesInterval = 15;
             var hoursInterval = 1;
