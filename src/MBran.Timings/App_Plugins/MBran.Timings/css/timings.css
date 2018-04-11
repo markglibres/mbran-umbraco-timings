@@ -2,10 +2,19 @@
     padding-bottom: 10px;
 }
 
-.timing-icons {
-    display: inline-block;
-    padding: 50px;
+.timing-edit, .timing-display, .timing-heading, .day, .time, .timing-day div, .timing-time {
+    vertical-align: top;
+    
 }
+
+.timing-icons {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.timing div {
+    display: inline-block;
+}
+
 .timing-day select {
     width: 80px;
 }
@@ -14,17 +23,9 @@
     width: 60px;
 }
 
-.timing-day, .timing-time {
-    display: inline-block;
-}
-
 .timing label {
     line-height: 15px;
     padding: 10px;
-}
-
-.timing-display div {
-    display: inline-block;
 }
 
 .timing-time {
@@ -33,10 +34,6 @@
 
 .timing-heading {
     width: 400px;
-}
-
-.timing-heading div {
-    display: inline-block;
 }
 
 .timing-heading .day {

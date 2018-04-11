@@ -81,12 +81,16 @@
 
             $scope.timings.push({
                 day: { from: '1', to: '5' },
-                from: { hour: '9', minutes: '00', meridian: 'AM' },
-                to: { hour: '6', minutes: '00', meridian: 'PM' }
+                from: { hour: '9', minutes: '0', meridian: 'AM' },
+                to: { hour: '6', minutes: '0', meridian: 'PM' }
             });
 
             $scope.sameDay[$scope.timings.length - 1] = isSingleDay;    
             $scope.setEditMode($scope.timings.length - 1);
+        };
+
+        $scope.padLeadingZeroes = function (number) {
+            return number.length == 1 ? '0' + number : '' + number;
         };
 
         /**
@@ -141,11 +145,11 @@
             };
 
             for (var hour = 1; hour <= 12; hour+=hoursInterval) {
-                $scope.options.times.hours.push(hour);
+                $scope.options.times.hours.push($scope.padLeadingZeroes(hour));
             }
 
             for (var minute = 0; minute < 60; minute += minutesInterval) {
-                $scope.options.times.minutes.push((minute < 10 ? '0' : '') + minute);
+                $scope.options.times.minutes.push($scope.padLeadingZeroes(minute));
             }
         }
 
