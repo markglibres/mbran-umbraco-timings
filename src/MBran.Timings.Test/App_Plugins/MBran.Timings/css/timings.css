@@ -1,4 +1,12 @@
-﻿.timing-day select {
+﻿.timing {
+    padding-bottom: 10px;
+}
+
+.timing-icons {
+    display: inline-block;
+    padding: 50px;
+}
+.timing-day select {
     width: 80px;
 }
 
@@ -15,6 +23,22 @@
     padding: 10px;
 }
 
+.timing-display div {
+    display: inline-block;
+}
+
 .timing-time {
     margin-left: 50px;
+}
+
+.timing-heading {
+    width: 400px;
+}
+
+.timing-heading div {
+    display: inline-block;
+}
+
+.timing-heading .day {
+    width: 200px;
 }

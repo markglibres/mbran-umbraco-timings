@@ -38,15 +38,15 @@
         $scope.applyChanges = function (timing, index) {
             
             var newTimings = angular.copy(timing);
+            if ($scope.sameDay[index]) {
+                newTimings.day.to = newTimings.day.from;
+            }
 
             if (!$scope.model.value.timings[index]) {
                 $scope.model.value.timings.push(newTimings);
             } else {
                 $scope.model.value.timings[index] = newTimings;
             }
-
-            $scope.sameDay[index] = newTimings.day.from == newTimings.day.to;
-
             $scope.removeEditMode(index);
 
             return false;
@@ -77,7 +77,7 @@
             }
         };
 
-        $scope.addNewTimings = function () {
+        $scope.addNewTimings = function (isSingleDay) {
 
             $scope.timings.push({
                 day: { from: '1', to: '5' },
@@ -85,13 +85,9 @@
                 to: { hour: '6', minutes: '00', meridian: 'PM' }
             });
 
+            $scope.sameDay[$scope.timings.length - 1] = isSingleDay;    
             $scope.setEditMode($scope.timings.length - 1);
         };
-
-        $scope.changeSameDay = function (index) {
-            var timing = $scope.timings[index];
-            $scope.sameDay[index] = timing.day.from == timing.day.to;
-        }
 
         /**
          * PRIVATE METHODS
@@ -125,7 +121,7 @@
             {
                 var timing = $scope.model.value.timings[i];
                 $scope.timings.push(angular.copy(timing));
-                $scope.sameDay.push(timing.day.from == timing.day.to);
+                $scope.sameDay.push(timing.day.from === timing.day.to);
             }
         }
 
