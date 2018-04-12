@@ -1,7 +1,7 @@
 ﻿<div class="umb-property mbran-timings" ng-controller="MBran.Timings.TimingsController">
     <div class="control-group umb-control-group timing" ng-repeat="timing in timings track by $index">
         <div class="timing-edit" ng-show="isEditMode($index)">
-            <div class="timing-day">
+            <div class="timing-day details">
                 <div>
                     <select ng-model="timing.day.from">
                         <option ng-repeat="day in options.days.code track by $index" value="{{$index}}" ng-selected="timing.day.from == $index">{{day}}</option>
@@ -14,7 +14,7 @@
                     </select>
                 </div>
             </div>
-            <div class="timing-time">
+            <div class="timing-time details">
                 <select ng-model="timing.from.hour">
                     <option ng-repeat="hourFrom in options.times.hours track by $index" value="{{hourFrom}}" ng-selected="timing.from.hour == hourFrom">{{hourFrom}}</option>
                 </select>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="timing-display" ng-show="!isEditMode($index)">
-            <div class="timing-heading umb-node-preview__content">
+            <div class="timing-heading umb-node-preview__content details">
                 <div class="day" ng-show="!sameDay[$index]">{{options.days.name[timing.day.from]}} - {{options.days.name[timing.day.to]}}</div> 
                 <div class="day" ng-show="sameDay[$index]">{{options.days.name[timing.day.to]}}</div>
                 <div class="time">{{padLeadingZeroes(timing.from.hour)}}:{{padLeadingZeroes(timing.from.minutes)}} {{timing.from.meridian}} - {{padLeadingZeroes(timing.to.hour)}}:{{padLeadingZeroes(timing.to.minutes)}} {{timing.to.meridian}}</div>
