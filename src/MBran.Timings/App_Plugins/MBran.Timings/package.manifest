@@ -6,6 +6,16 @@
       editor: { 
 		view: '~/App_Plugins/MBran.Timings/views/timings.html',
 		valueType: 'JSON'
+	  },
+	  prevalues: {
+		fields: [
+			{
+				label: 'Minutes interval',
+				description: 'Minutes interval on the dropdown options. Defaults to 15 minutes.',
+				key: 'minutesInterval',
+				view: 'number'
+			}
+		]
 	  }
     }
   ],

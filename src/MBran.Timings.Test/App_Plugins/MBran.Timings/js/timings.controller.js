@@ -40,6 +40,7 @@
             var newTimings = angular.copy(timing);
             if ($scope.sameDay[index]) {
                 newTimings.day.to = newTimings.day.from;
+                timing.day.to = timing.day.from;
             }
 
             if (!$scope.model.value.timings[index]) {
@@ -107,6 +108,10 @@
 
         
         function initOptions() {
+            
+            $scope.config = {
+                minutesInterval: $scope.model.config.minutesInterval && $scope.model.config.minutesInterval != '' ? parseInt($scope.model.config.minutesInterval) : 15
+            };
 
         }
 
@@ -136,7 +141,6 @@
                 name: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
             };
 
-            var minutesInterval = 15;
             var hoursInterval = 1;
             $scope.options.times = {
                 hours: [],
@@ -148,7 +152,7 @@
                 $scope.options.times.hours.push($scope.padLeadingZeroes(hour));
             }
 
-            for (var minute = 0; minute < 60; minute += minutesInterval) {
+            for (var minute = 0; minute < 60; minute += $scope.config.minutesInterval) {
                 $scope.options.times.minutes.push($scope.padLeadingZeroes(minute));
             }
         }

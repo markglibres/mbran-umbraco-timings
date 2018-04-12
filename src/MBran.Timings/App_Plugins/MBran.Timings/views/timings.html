@@ -27,7 +27,7 @@
         <div class="timing-display" ng-show="!isEditMode($index)">
             <div class="timing-heading umb-node-preview__content details">
                 <div class="day" ng-show="!sameDay[$index]">{{options.days.name[timing.day.from]}} - {{options.days.name[timing.day.to]}}</div> 
-                <div class="day" ng-show="sameDay[$index]">{{options.days.name[timing.day.to]}}</div>
+                <div class="day" ng-show="sameDay[$index]">{{options.days.name[timing.day.from]}}</div>
                 <div class="time">{{padLeadingZeroes(timing.from.hour)}}:{{padLeadingZeroes(timing.from.minutes)}} {{timing.from.meridian}} - {{padLeadingZeroes(timing.to.hour)}}:{{padLeadingZeroes(timing.to.minutes)}} {{timing.to.meridian}}</div>
             </div>
             <div class="timing-icons umb-node-preview__actions">
