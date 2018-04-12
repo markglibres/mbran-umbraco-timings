@@ -3,37 +3,21 @@
         <div class="timing-edit" ng-show="isEditMode($index)">
             <div class="timing-day details">
                 <div>
-                    <select ng-model="timing.day.from">
-                        <option ng-repeat="day in options.days.code track by $index" value="{{$index}}" ng-selected="timing.day.from == $index">{{day}}</option>
-                    </select>
+                    <select ng-options="index as day for (index,day) in options.days.code" ng-model="timing.day.from"></select>
                 </div>
                 <div ng-show="!sameDay[$index]">
                     <label>To</label>
-                    <select ng-model="timing.day.to">
-                        <option ng-repeat="day in options.days.code track by $index" value="{{$index}}" ng-selected="timing.day.to == $index">{{day}}</option>
-                    </select>
+                    <select ng-options="index as day for (index,day) in options.days.code" ng-model="timing.day.to"></select>
                 </div>
             </div>
             <div class="timing-time details">
-                <select ng-model="timing.from.hour">
-                    <option ng-repeat="hourFrom in options.times.hours track by $index" value="{{hourFrom}}" ng-selected="timing.from.hour == hourFrom">{{hourFrom}}</option>
-                </select>
-                <select ng-model="timing.from.minutes">
-                    <option ng-repeat="minuteFrom in options.times.minutes track by $index" value="{{minuteFrom}}" ng-selected="timing.from.minutes == minuteFrom">{{minuteFrom}}</option>
-                </select>
-                <select ng-model="timing.from.meridian">
-                    <option ng-repeat="meridianFrom in options.times.meridians track by $index" value="{{meridianFrom}}" ng-selected="timing.from.meridian == meridianFrom">{{meridianFrom}}</option>
-                </select>
+                <select ng-options="hour as (padLeadingZeroes(hour)) for hour in options.times.hours track by hour" ng-model="timing.from.hour"></select>
+                <select ng-options="minute as (padLeadingZeroes(minute)) for minute in options.times.minutes track by minute" ng-model="timing.from.minutes"></select>
+                <select ng-options="meridian as meridian for meridian in options.times.meridians track by meridian" ng-model="timing.from.meridian"></select>
                 <label>To</label>
-                <select ng-model="timing.to.hour">
-                    <option ng-repeat="hourTo in options.times.hours track by $index" value="{{hourTo}}" ng-selected="timing.to.hour == hourTo">{{hourTo}}</option>
-                </select>
-                <select ng-model="timing.to.minutes">
-                    <option ng-repeat="minuteTo in options.times.minutes track by $index" value="{{minuteTo}}" ng-selected="timing.to.minutes == minuteTo">{{minuteTo}}</option>
-                </select>
-                <select ng-model="timing.to.meridian">
-                    <option ng-repeat="meridianTo in options.times.meridians track by $index" value="{{meridianTo}}" ng-selected="timing.to.meridian == meridianTo">{{meridianTo}}</option>
-                </select>
+                <select ng-options="hour as (padLeadingZeroes(hour)) for hour in options.times.hours track by hour" ng-model="timing.to.hour"></select>
+                <select ng-options="minute as (padLeadingZeroes(minute)) for minute in options.times.minutes track by minute" ng-model="timing.to.minutes"></select>
+                <select ng-options="meridian as meridian for meridian in options.times.meridians track by meridian" ng-model="timing.to.meridian"></select>
             </div>
             <div class="timing-icons umb-node-preview__actions">
                 <a class="umb-node-preview__action ng-scope" href ng-click="applyChanges(timing, $index)">Apply</a>
