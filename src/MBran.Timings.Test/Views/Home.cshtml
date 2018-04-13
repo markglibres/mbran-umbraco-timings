@@ -1,5 +1,6 @@
 ﻿@inherits UmbracoViewPage<Home>
 
+@using MBran.Timings.Extensions
 
 <div class="page-components">
     <h1>Right away sir!</h1>
@@ -9,6 +10,17 @@
         {
             <div>@timing.Days.From - @timing.Days.To</div>
             foreach(var hours in timing.Hours)
+            {
+            <div>@hours.From.ToString("hh:mm tt") - @hours.To.ToString("hh:mm tt")</div>
+            }
+        }
+    </div>
+    <div>
+        <h3>Daily Hours</h3>
+        @foreach(var dailyHours in Model.OpeningHours.ToDailyHours())
+        {
+            <div>@dailyHours.Key</div>
+            foreach(var hours in dailyHours.Value)
             {
             <div>@hours.From.ToString("hh:mm tt") - @hours.To.ToString("hh:mm tt")</div>
             }
