@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Generic Page</summary>
 	[PublishedContentModel("genericPage")]
-	public partial class GenericPage : PublishedContentModel, IHasMetaHeader, IHasTextAndMedia
+	public partial class GenericPage : PublishedContentModel, IHasBusinessHours, IHasMetaHeader, IHasTextAndMedia
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "genericPage";
@@ -43,6 +43,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<GenericPage, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// openingHours
+		///</summary>
+		[ImplementPropertyType("openingHours")]
+		public IEnumerable<MBran.Timings.Models.ValueType.Timing> OpeningHours
+		{
+			get { return Umbraco.Web.PublishedContentModels.HasBusinessHours.GetOpeningHours(this); }
 		}
 
 		///<summary>

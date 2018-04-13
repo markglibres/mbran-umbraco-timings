@@ -91,12 +91,9 @@
         };
 
         $scope.padLeadingZeroes = function (number) {
-            return number.length == 1 ? '0' + number : '' + number;
+            return number.length === 1 ? '0' + number : '' + number;
         };
 
-        /**
-         * PRIVATE METHODS
-         */
         function getEditModeIndex(index) {
             for (var i = 0; i < editMode.length; i++) {
                 if (editMode[i].key === index) {
@@ -110,18 +107,18 @@
         function initOptions() {
             
             $scope.config = {
-                minutesInterval: $scope.model.config.minutesInterval && $scope.model.config.minutesInterval != '' ? parseInt($scope.model.config.minutesInterval) : 15
+                minutesInterval: $scope.model.config.minutesInterval && $scope.model.config.minutesInterval !== '' ? parseInt($scope.model.config.minutesInterval) : 15
             };
 
         }
 
         function initModel() {
 
-            if ($scope.model.value == null || $scope.model.value == '') {
+            if ($scope.model.value === null || $scope.model.value === '') {
                 $scope.model.value = [];
             }
 
-            if ($scope.model.value.timings == null) {
+            if ($scope.model.value.timings === null) {
                 $scope.model.value.timings = [];
             }
 

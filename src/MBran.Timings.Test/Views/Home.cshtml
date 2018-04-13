@@ -3,4 +3,15 @@
 
 <div class="page-components">
     <h1>Right away sir!</h1>
+    <div>
+        <h2>Opening Hours</h2>
+        @foreach(var timing in Model.OpeningHours)
+        {
+            <div>@timing.Days.From - @timing.Days.To</div>
+            foreach(var hours in timing.Hours)
+            {
+            <div>@hours.From.ToString("hh:mm tt") - @hours.To.ToString("hh:mm tt")</div>
+            }
+        }
+    </div>
 </div>

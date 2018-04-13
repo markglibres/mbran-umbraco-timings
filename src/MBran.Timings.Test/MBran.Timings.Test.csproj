@@ -324,6 +324,7 @@
     <Compile Include="App_Data\Models\File.generated.cs" />
     <Compile Include="App_Data\Models\Folder.generated.cs" />
     <Compile Include="App_Data\Models\GenericPage.generated.cs" />
+    <Compile Include="App_Data\Models\HasBusinessHours.generated.cs" />
     <Compile Include="App_Data\Models\HasMetaHeader.generated.cs" />
     <Compile Include="App_Data\Models\HasTextAndMedia.generated.cs" />
     <Compile Include="App_Data\Models\Home.generated.cs" />
@@ -336,6 +337,12 @@
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MBran.Timings\MBran.Timings.csproj">
+      <Project>{fcb2fcc2-7d48-48fc-8592-187f3ccd7905}</Project>
+      <Name>MBran.Timings</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
