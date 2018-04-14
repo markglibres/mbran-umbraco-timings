@@ -9,10 +9,12 @@
         @foreach(var timing in Model.OpeningHours)
         {
             <div>@timing.Days.From - @timing.Days.To</div>
-            foreach(var hours in timing.Hours)
-            {
-            <div>@hours.From.ToString("hh:mm tt") - @hours.To.ToString("hh:mm tt")</div>
-            }
+            <ul>
+                @foreach(var hours in timing.Hours)
+                {
+                    <li>@hours.From.ToString("hh:mm tt") - @hours.To.ToString("hh:mm tt")</li>
+                }
+            </ul>
         }
     </div>
     <div>
@@ -20,10 +22,17 @@
         @foreach(var dailyHours in Model.OpeningHours.ToDailyHours())
         {
             <div>@dailyHours.Key</div>
-            foreach(var hours in dailyHours.Value)
-            {
-            <div>@hours.From.ToString("hh:mm tt") - @hours.To.ToString("hh:mm tt")</div>
-            }
+            <ul>
+                @if (dailyHours.Value.Any())
+                {
+                    foreach (var hours in dailyHours.Value)
+                    {
+                        <li>@hours.From.ToString("hh:mm tt") - @hours.To.ToString("hh:mm tt")</li>
+                    }
+                } else {
+                    <li>Closed</li>
+                }
+            </ul>
         }
     </div>
 </div>

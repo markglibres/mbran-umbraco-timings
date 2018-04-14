@@ -1,5 +1,5 @@
 ﻿angular.module('umbraco')
-    .controller('MBran.Timings.TimingsController', function ($scope) {
+    .controller('MBran.Timings.TimingsController', function ($scope, daysService) {
 
         var editMode = [];
         $scope.timings = [];
@@ -138,6 +138,20 @@
                 name: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
             };
 
+            daysService.getDays()
+                .then(function (response) {
+                    $scope.options.days.name = response.data;
+                }, function (response) {
+                    $scope.options.days.name = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                });
+
+            daysService.getAbbreviatedDays()
+                .then(function (response) {
+                    $scope.options.days.code = response.data;
+                }, function (response) {
+                    $scope.options.days.code = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+                });
+            
             var hoursInterval = 1;
             $scope.options.times = {
                 hours: [],

@@ -19,6 +19,7 @@
 	  }
     }
   ],
-  javascript:	['~/App_Plugins/MBran.Timings/js/timings.controller.js'],
+  javascript:	['~/App_Plugins/MBran.Timings/js/timings.controller.js',
+	'~/App_Plugins/MBran.Timings/js/timings.service.js'],
   css:			['~/App_Plugins/MBran.Timings/css/timings.css']
 }
