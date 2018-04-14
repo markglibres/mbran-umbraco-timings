@@ -11,4 +11,8 @@
             return $http.get(timingsEndPoint + 'GetAbbreviatedDayNames');
         };
 
+        this.getMeridian = function () {
+            return $http.get(timingsEndPoint + 'GetMeridian');
+        };
+
     });

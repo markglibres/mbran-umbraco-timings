@@ -1,4 +1,6 @@
-﻿using MBran.Timings.Service;
+﻿using MBran.Timings.Models.Response;
+using MBran.Timings.Service;
+using System;
 using System.Collections.Generic;
 using Umbraco.Core;
 using Umbraco.Web.Mvc;
@@ -15,6 +17,7 @@ namespace MBran.Timings.Api
         {
             _siteService = new SiteService();
         }
+
         public IEnumerable<string> GetDayNames()
         {
             
@@ -41,5 +44,17 @@ namespace MBran.Timings.Api
                 .GetCacheItem(cacheName, () => _siteService.GetCurrentCulture().DateTimeFormat.AbbreviatedDayNames);
         }
         
+        public IEnumerable<Meridian> GetMeridian()
+        {
+            var model = new List<Meridian>();
+            var now = DateTime.Now;
+            var am = new DateTime(now.Year, now.Month, now.Day, 1, 0, 0);
+            var pm = new DateTime(now.Year, now.Month, now.Day, 23, 0, 0);
+
+            model.Add(new Meridian { Key = "AM", Value = am.ToString("tt", _siteService.GetCurrentCulture()) });
+            model.Add(new Meridian { Key = "PM", Value = pm.ToString("tt", _siteService.GetCurrentCulture()) });
+
+            return model;
+        }
     }
 }

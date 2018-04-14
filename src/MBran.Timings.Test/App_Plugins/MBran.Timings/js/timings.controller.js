@@ -94,6 +94,15 @@
             return number.length === 1 ? '0' + number : '' + number;
         };
 
+        $scope.getMeridianValue = function (meridianKey) {
+            for (var i = 0; i < $scope.options.times.meridians.length; i++) {
+                if ($scope.options.times.meridians[i].Key.toLowerCase() === meridianKey.toLowerCase()) {
+                    return $scope.options.times.meridians[i].Value;
+                }
+            }
+            return meridianKey;
+        };
+
         function getEditModeIndex(index) {
             for (var i = 0; i < editMode.length; i++) {
                 if (editMode[i].key === index) {
@@ -155,8 +164,7 @@
             var hoursInterval = 1;
             $scope.options.times = {
                 hours: [],
-                minutes: [],
-                meridians: ['AM','PM']
+                minutes: []
             };
 
             for (var hour = 1; hour <= 12; hour+=hoursInterval) {
@@ -166,6 +174,13 @@
             for (var minute = 0; minute < 60; minute += $scope.config.minutesInterval) {
                 $scope.options.times.minutes.push($scope.padLeadingZeroes(minute));
             }
+
+            daysService.getMeridian()
+                .then(function (response) {
+                    $scope.options.times.meridians = response.data;
+                }, function (response) {
+                    $scope.options.times.meridians = [{ Key: 'AM', Value: 'AM' }, { Key: 'PM', Value: 'PM' }];
+                });
         }
 
         init();

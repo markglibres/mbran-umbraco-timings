@@ -210,6 +210,7 @@
     <Compile Include="Api\DayOfWeekApiController.cs" />
     <Compile Include="Extensions\TimingExtensions.cs" />
     <Compile Include="Extensions\TimingSourceItemHourExtensions.cs" />
+    <Compile Include="Models\Response\Meridian.cs" />
     <Compile Include="Models\Source\TimingSourceItemDays.cs" />
     <Compile Include="Models\Source\TimingSourceItemHour.cs" />
     <Compile Include="Models\ValueType\Timing.cs" />
