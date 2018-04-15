@@ -1,5 +1,5 @@
 # MBran Timings (Opening Hours)
-MBran SitemapXml is an Umbraco package for business opening hours / timings.
+MBran Timings is an Umbraco package for business opening hours / timings.
 
 [1]: https://our.umbraco.org/projects/backoffice-extensions/mbran-sitemap-xml/ "Umbraco Package Link"
 [2]: https://www.nuget.org/packages/MBran.Timings/ "NuGet Package Link"
