@@ -21,4 +21,13 @@ MBran Timings is an Umbraco package for business opening hours / timings.
 * Localization support
 * Day range and single day support
 * Configurable minutes interval
-* Extension methods to auto group timings per day
+* Extension methods to auto group timings per day (ToDailyHours())
+
+```csharp
+@using MBran.Timings.Extensions
+@inherits UmbracoViewPage<Home>
+
+@foreach(var dailyHours in Model.OpeningHours.ToDailyHours())
+{
+}
+````
