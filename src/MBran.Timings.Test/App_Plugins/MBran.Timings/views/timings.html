@@ -11,12 +11,12 @@
                 </div>
             </div>
             <div class="timing-time details">
-                <select ng-options="hour as (padLeadingZeroes(hour)) for hour in options.times.hours track by hour" ng-model="timing.from.hour"></select>
-                <select ng-options="minute as (padLeadingZeroes(minute)) for minute in options.times.minutes track by minute" ng-model="timing.from.minutes"></select>
+                <select ng-options="hour as padLeadingZeroes(hour) for hour in options.times.hours track by hour" ng-model="timing.from.hour"></select>
+                <select ng-options="minute as padLeadingZeroes(minute) for minute in options.times.minutes track by minute" ng-model="timing.from.minutes"></select>
                 <select ng-options="meridian.Key as meridian.Value for meridian in options.times.meridians" ng-model="timing.from.meridian"></select>
                 <label>To</label>
-                <select ng-options="hour as (padLeadingZeroes(hour)) for hour in options.times.hours track by hour" ng-model="timing.to.hour"></select>
-                <select ng-options="minute as (padLeadingZeroes(minute)) for minute in options.times.minutes track by minute" ng-model="timing.to.minutes"></select>
+                <select ng-options="hour as padLeadingZeroes(hour) for hour in options.times.hours track by hour" ng-model="timing.to.hour"></select>
+                <select ng-options="minute as padLeadingZeroes(minute) for minute in options.times.minutes track by minute" ng-model="timing.to.minutes"></select>
                 <select ng-options="meridian.Key as meridian.Value for meridian in options.times.meridians" ng-model="timing.to.meridian"></select>
             </div>
             <div class="timing-icons umb-node-preview__actions">

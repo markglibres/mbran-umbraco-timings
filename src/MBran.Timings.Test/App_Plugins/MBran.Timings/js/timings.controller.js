@@ -91,15 +91,21 @@
         };
 
         $scope.padLeadingZeroes = function (number) {
+            
             return number.length === 1 ? '0' + number : '' + number;
         };
 
         $scope.getMeridianValue = function (meridianKey) {
+            if (!$scope.options.times.meridians) {
+                return meridianKey;
+            }
+
             for (var i = 0; i < $scope.options.times.meridians.length; i++) {
                 if ($scope.options.times.meridians[i].Key.toLowerCase() === meridianKey.toLowerCase()) {
                     return $scope.options.times.meridians[i].Value;
                 }
             }
+
             return meridianKey;
         };
 
@@ -163,11 +169,11 @@
             };
 
             for (var hour = 1; hour <= 12; hour+=hoursInterval) {
-                $scope.options.times.hours.push($scope.padLeadingZeroes(hour));
+                $scope.options.times.hours.push(''+hour);
             }
 
             for (var minute = 0; minute < 60; minute += $scope.config.minutesInterval) {
-                $scope.options.times.minutes.push($scope.padLeadingZeroes(minute));
+                $scope.options.times.minutes.push('' +minute);
             }
 
             daysService.getMeridian()
