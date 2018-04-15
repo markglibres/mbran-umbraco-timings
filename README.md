@@ -1,7 +1,7 @@
 # MBran Timings (Opening Hours)
 MBran Timings is an Umbraco package for business opening hours / timings.
 
-[1]: https://our.umbraco.org/projects/backoffice-extensions/mbran-sitemap-xml/ "Umbraco Package Link"
+[1]: https://our.umbraco.org/projects/backoffice-extensions/mbran-timings-opening-hours/ "Umbraco Package Link"
 [2]: https://www.nuget.org/packages/MBran.Timings/ "NuGet Package Link"
 
 ## From NuGet:
@@ -12,7 +12,7 @@ MBran Timings is an Umbraco package for business opening hours / timings.
 
 ## From Umbraco Package  Manager:
 
-1. Download and install package ([https://our.umbraco.org/projects/backoffice-extensions/mbran-sitemap-xml/][1])
+1. Download and install package ([https://our.umbraco.org/projects/backoffice-extensions/mbran-timings-opening-hours/][1])
 2. Create new data type of type "Timings - Opening Hours (MBran.Timings)"
 3. Add a new property out from your newly created data type to your desired document type.
 
