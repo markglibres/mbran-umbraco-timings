@@ -22,14 +22,14 @@ namespace MBran.Timings
 
         public object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
         {
-            return JsonConvert.DeserializeObject<TimingSourceJson>(source as string);
+            return JsonConvert.DeserializeObject<List<TimingSourceItemJson>>(source as string);
         }
 
         public object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
         {
-            var timingSource = source as TimingSourceJson;
+            var timingSource = source as List<TimingSourceItemJson>;
 
-            var model = timingSource.Timings.GroupBy(timing => new {  timing.Days.From,  timing.Days.To } )
+            var model = timingSource.GroupBy(timing => new {  timing.Days.From,  timing.Days.To } )
                 .Select(group => new Timing
                 {
                     Days = new TimingDayRange { From = group.Key.From, To = group.Key.To },

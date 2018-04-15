@@ -43,10 +43,10 @@
                 timing.day.to = timing.day.from;
             }
 
-            if (!$scope.model.value.timings[index]) {
-                $scope.model.value.timings.push(newTimings);
+            if (!$scope.model.value[index]) {
+                $scope.model.value.push(newTimings);
             } else {
-                $scope.model.value.timings[index] = newTimings;
+                $scope.model.value[index] = newTimings;
             }
             $scope.removeEditMode(index);
 
@@ -58,7 +58,7 @@
             var editIndex = getEditModeIndex(index);
             var originalTiming = angular.copy(editMode[editIndex].timing);
 
-            if (!$scope.model.value.timings[index]) {
+            if (!$scope.model.value[index]) {
                 $scope.removeTiming(index);
             } else {
                 $scope.timings[index] = originalTiming;    
@@ -73,8 +73,8 @@
                 $scope.timings.splice(index, 1);
             }
 
-            if ($scope.model.value.timings[index]) {
-                $scope.model.value.timings.splice(index, 1);
+            if ($scope.model.value[index]) {
+                $scope.model.value.splice(index, 1);
             }
         };
 
@@ -123,18 +123,13 @@
 
         function initModel() {
 
-            if ($scope.model.value === null || $scope.model.value === '') {
+            if (!$scope.model.value || $scope.model.value === '') {
                 $scope.model.value = [];
             }
 
-            if ($scope.model.value.timings === null) {
-                $scope.model.value.timings = [];
-            }
-
-            
-            for (var i = 0; i < $scope.model.value.timings.length; i++)
+            for (var i = 0; i < $scope.model.value.length; i++)
             {
-                var timing = $scope.model.value.timings[i];
+                var timing = $scope.model.value[i];
                 $scope.timings.push(angular.copy(timing));
                 $scope.sameDay.push(timing.day.from === timing.day.to);
             }
