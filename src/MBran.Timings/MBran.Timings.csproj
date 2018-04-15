@@ -217,7 +217,6 @@
     <Compile Include="Models\ValueType\TimingDayRange.cs" />
     <Compile Include="Models\ValueType\TimingHourRange.cs" />
     <Compile Include="Models\Source\TimingSourceItemJson.cs" />
-    <Compile Include="Models\Source\TimingSourceJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ISiteService.cs" />
     <Compile Include="Service\SiteService.cs" />
